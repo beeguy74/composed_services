@@ -13,6 +13,6 @@ clean:
 	docker container rm ${NAME} || true
 
 fclean: clean
-	docker image rm ${IMAGE}
+	docker image rm $(IMAGE)
 
 re: fclean build all
