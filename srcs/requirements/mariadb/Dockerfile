@@ -1,0 +1,17 @@
+FROM alpine:latest
+
+LABEL artist=yar_maria
+LABEL version=0.1
+
+RUN apk update && apk upgrade && apk add --no-cache  mariadb mariadb-client vim && \
+	mysql_install_db --user=mysql --datadir=/var/lib/mysql/data --auth-root-authentication-method=normal
+
+COPY ./conf/create_db.sh ./create_db.sh
+#RUN chmod 777 ./create_db.sh
+#COPY ./my_cv /var/www/cv.com
+
+EXPOSE 3306
+# ENTRYPOINT tail -f
+
+CMD sh ./create_db.sh
+
