@@ -3,7 +3,7 @@ IMAGE = my-wp
 USER = wpuser
 
 all: 
-	docker run --name ${NAME} -d -p 3306:3306 ${IMAGE} --dns 8.8.8.8 
+	docker run --name ${NAME} -d -p 3306:3306 ${IMAGE}
 build:
 	docker build . -t ${IMAGE} --build-arg DB_USER=$(USER)
 stop:

@@ -1,6 +1,4 @@
-	mkdir -p /usr/share/webapps/
-	cd /usr/share/webapps/
-	wget http://wordpress.org/latest.tar.gz
-	tar -xzvf latest.tar.gz
-	rm latest.tar.gz
-	ln -s /usr/share/webapps/wordpress/ /var/www/localhost/htdocs/wordpress
+wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+chmod +x wp-cli.phar
+mv wp-cli.phar /usr/local/bin/wp
+tail -f
