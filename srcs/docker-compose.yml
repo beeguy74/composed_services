@@ -1,0 +1,48 @@
+version: "3"
+services:
+  nginx:
+    image: my-nginx
+    build: ./requirements/nginx
+    container_name: my-nginx
+    ports:
+      - "443:443"
+      - "80:80"
+
+    restart: unless-stopped
+    networks:
+    - quarante_deux
+
+
+  mariadb:
+    image: my-maria
+    build: ./requirements/mariadb
+    container_name: my-db
+    expose:
+      - "3306"
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    networks:
+     - quarante_deux
+
+  wordpress:
+    image: my-wp
+    build: ./requirements/wordpress
+    container_name: my-wp
+    depends_on: 
+      - mariadb
+    environment:
+      - RACK_ENV=development
+      - SHOW=true
+    expose:
+      - "9000"
+    ports:
+      - "9000:9000"
+    restart: unless-stopped
+    networks:
+      - quarante_deux
+
+networks:
+  quarante_deux:
+
+

@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.15
 
 LABEL artist=yar_maria
 LABEL version=0.1
@@ -10,7 +10,7 @@ COPY ./conf/create_db.sh ./create_db.sh
 #RUN chmod 777 ./create_db.sh
 #COPY ./my_cv /var/www/cv.com
 
-EXPOSE 3306
+# EXPOSE 3306
 # ENTRYPOINT tail -f
 
 CMD sh ./create_db.sh

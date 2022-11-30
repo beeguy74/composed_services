@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.15
 
 LABEL artist=yar_nginx
 LABEL version=0.1
