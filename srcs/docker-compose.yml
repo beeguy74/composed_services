@@ -1,4 +1,4 @@
-version: "3"
+version: "3.3"
 services:
   nginx:
     image: my-nginx
@@ -9,6 +9,8 @@ services:
       - "80:80"
 
     restart: unless-stopped
+    volumes:
+      - wp-volume:/var/www/
     networks:
     - quarante_deux
 
@@ -24,6 +26,8 @@ services:
     restart: unless-stopped
     networks:
      - quarante_deux
+    volumes:
+      - db-volume:/var/db
 
   wordpress:
     image: my-wp
@@ -39,10 +43,26 @@ services:
     ports:
       - "9000:9000"
     restart: unless-stopped
+    volumes:
+      - wp-volume:/var/www/
     networks:
       - quarante_deux
 
 networks:
   quarante_deux:
+
+volumes:
+  wp-volume:
+    driver: local
+    driver_opts:
+      type: vfs
+      device: /home/tphung/data/www
+      o: bind
+  db-volume:
+    driver: local
+    driver_opts:
+      type: vfs
+      device: /home/tphung/data/db
+      o: bind
 
 
