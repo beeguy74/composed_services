@@ -1,2 +1,2 @@
 
-mysqld_safe --datadir='/var/lib/mysql/data' --pid_file=1
+mysqld_safe --datadir='/var/db' --pid_file=1
