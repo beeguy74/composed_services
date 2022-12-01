@@ -9,7 +9,7 @@ all:
 	docker-compose -f ./srcs/docker-compose.yml up
 
 clean: 
-	docker-compose -f ./srcs/docker-compose.yml down || true
+	docker-compose -f ./srcs/docker-compose.yml down -t 2 || true
 
 fclean: clean
 	docker image rm `docker images -qa` || true
