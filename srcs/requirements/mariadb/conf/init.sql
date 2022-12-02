@@ -1,5 +1,8 @@
+DELETE FROM mysql.user WHERE User='';
 ALTER USER 'root'@'localhost' IDENTIFIED BY '1234';
+FLUSH PRIVILEGES;
+CREATE USER 'wp_user'@'localhost' IDENTIFIED by '1234';
+FLUSH PRIVILEGES;
 CREATE DATABASE wordpress CHARACTER SET utf8 COLLATE utf8_general_ci;
-CREATE USER 'wp_user'@'%' IDENTIFIED by '1234';
-GRANT ALL PRIVILEGES ON wordpress.* TO 'wp_user'@'%';
+GRANT ALL PRIVILEGES ON wordpress.* TO 'wp_user'@'%' IDENTIFIED by '1234';
 FLUSH PRIVILEGES;

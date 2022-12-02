@@ -10,9 +10,10 @@ all:
 
 clean: 
 	docker-compose -f ./srcs/docker-compose.yml down -t 2 || true
+	docker container rm `docker ps -qa` || true
 
 fclean: clean
-	docker image rm `docker images -qa` || true
+	docker image rm -f `docker images -qa` || true
 	@docker network rm `docker network ls -q` || true
 	docker volume rm `docker volume ls -q` || true
 	sudo rm -rf ~/data/*

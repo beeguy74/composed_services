@@ -23,7 +23,7 @@ services:
       - "3306"
     restart: unless-stopped
     networks:
-     - quarante_deux
+      - quarante_deux
     volumes:
       - db-volume:/var/db
 
@@ -47,7 +47,7 @@ services:
       - quarante_deux
 
 networks:
-  quarante_deux:
+    quarante_deux:
 
 volumes:
   wp-volume:
