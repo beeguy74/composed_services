@@ -11,7 +11,6 @@ COPY ./conf/www.conf /etc/php7/php-fpm.d/
 RUN chmod 777 ./wp-config-create.sh && chmod 777 /etc/php7/php-fpm.d/www.conf 
 #COPY ./my_cv /var/www/cv.com
 
-EXPOSE 80
 
 CMD sh ./wp-config-create.sh
 
