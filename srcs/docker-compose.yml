@@ -2,6 +2,7 @@ version: "3.3"
 services:
   nginx:
     build: ./requirements/nginx
+    image: nginx
     container_name: my-nginx
     ports:
       - "443:443"
@@ -19,6 +20,7 @@ services:
       args:
         DB_PASS: ${DB_PASS}
         ROOT_PASS: ${ROOT_PASS}
+    image: mariadb
     container_name: my-db
     expose:
       - "3306"
@@ -34,6 +36,7 @@ services:
       args:
         DB_PASS: ${DB_PASS}
         WP_PASS: ${WP_PASS}
+    image: wordpress
     container_name: my-wp
     depends_on: 
       - mariadb
