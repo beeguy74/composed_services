@@ -1,7 +1,6 @@
 version: "3.3"
 services:
   nginx:
-    image: my-nginx
     build: ./requirements/nginx
     container_name: my-nginx
     ports:
@@ -15,8 +14,11 @@ services:
 
 
   mariadb:
-    image: my-maria
-    build: ./requirements/mariadb
+    build:
+      context: ./requirements/mariadb/
+      args:
+        DB_PASS: ${DB_PASS}
+        ROOT_PASS: ${ROOT_PASS}
     container_name: my-db
     expose:
       - "3306"
@@ -27,8 +29,11 @@ services:
       - db-volume:/var/db
 
   wordpress:
-    image: my-wp
-    build: ./requirements/wordpress
+    build:
+      context: ./requirements/wordpress/
+      args:
+        DB_PASS: ${DB_PASS}
+        WP_PASS: ${WP_PASS}
     container_name: my-wp
     depends_on: 
       - mariadb

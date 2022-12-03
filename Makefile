@@ -6,7 +6,7 @@ all:
 	mkdir ~/data || true
 	mkdir ~/data/www || true
 	mkdir ~/data/db || true
-	docker-compose -f ./srcs/docker-compose.yml up -d
+	docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d
 
 down:
 	docker-compose -f ./srcs/docker-compose.yml down -t 2 || true

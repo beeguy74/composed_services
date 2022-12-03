@@ -1,17 +1,15 @@
 FROM alpine:3.15
 
-LABEL artist=yar_maria
+ARG DB_PASS ROOT_PASS
+
+LABEL artist=yar_mariadb
 LABEL version=0.1
 
-COPY ./conf/* ./
-RUN apk update && apk upgrade && apk add --no-cache  mariadb mariadb-client vim && \
+COPY ./conf/* /
+RUN apk update && apk upgrade && apk add --no-cache  mariadb mariadb-client sed && \
 	mysql_install_db --user=mysql --datadir=/var/db --auth-root-authentication-method=normal && \
-	mkdir /run/mysqld && chown -R mysql:mysql ./init.sql /run/mysqld
-
-#COPY ./my_cv /var/www/cv.com
-
-#EXPOSE 3306
-#ENTRYPOINT tail -f
+	sed -i "s|_WP_PASS|$DB_PASS|g" /init.sql && \
+	sed -i "s|_ROOT_PASS|$ROOT_PASS|g" /init.sql  && \
+	mkdir /run/mysqld && chown -R mysql:mysql /init.sql /run/mysqld 
 
 CMD sh ./create_db.sh
-
